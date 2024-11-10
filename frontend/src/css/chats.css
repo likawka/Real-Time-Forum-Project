@@ -1,0 +1,129 @@
+/* Chat container styling */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 10px;
+    padding: var(--padding-small);
+}
+
+.chat-container-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 10px;
+    padding: var( --padding-small);
+}
+
+.chats-box{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding: var(--padding-small);
+    gap: var(--gap-medium);
+    justify-content: space-between;
+}
+/* Input field styling */
+.chat-input {
+    width: 100%;
+    padding: 10px 15px;
+    background-color: #1c1c1c;
+    border: 1px solid #444;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 14px;
+    outline: none;
+    margin-right: 10px;
+}
+
+/* Send button styling */
+.send-button {
+    padding: 10px 20px;
+    background-color: var(--bright-red);
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.send-button:hover {
+    background-color: var(--light-red);  
+}
+
+/* Flexbox styling to align input and button horizontally */
+/* .chat-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+} */
+
+.chat-input, .send-button {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.send-button {
+    flex: 0;
+}
+
+
+
+
+
+/* Chat messages styling */
+
+/* Date separator styling */
+.date-separator {
+    text-align: center;
+    color: #b0b0b0;
+    font-size: 14px;
+    margin: 20px 0;
+}
+
+/* Each row of message */
+.message-row {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--gap-medium);
+
+}
+
+
+/* Message bubble styling */
+.message {
+    background-color: #2e2e2e;
+    color: var(--light-white, rgba(255, 255, 255, 0.64));
+    padding: var(--padding-medium);
+    border-radius: var(--border-radius);
+    max-width: 80%;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+}
+
+/* Timestamp styling */
+.timestamp {
+    font-size: 12px;
+    color: #b0b0b0;
+    margin-left: 10px;
+    white-space: nowrap;
+}
+
+/* Additional spacing for the last message bubble */
+.message-row:last-child .message {
+    margin-bottom: 0;
+}
+.hidden {
+    display: none;
+}

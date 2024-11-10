@@ -1,0 +1,788 @@
+basePath: /api
+definitions:
+  api.Category:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+  api.Chat:
+    properties:
+      ChatInfo:
+        $ref: '#/definitions/api.ChatInfo'
+      messages:
+        items:
+          $ref: '#/definitions/api.MessageMessage'
+        type: array
+    type: object
+  api.ChatCreateResponse:
+    properties:
+      chatHash:
+        type: string
+    type: object
+  api.ChatInfo:
+    properties:
+      chatHash:
+        type: string
+      user1_id:
+        type: integer
+      user2_id:
+        type: integer
+    type: object
+  api.ChatsList:
+    properties:
+      chats:
+        items:
+          $ref: '#/definitions/api.ChatInfo'
+        type: array
+    type: object
+  api.Comment:
+    properties:
+      content:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: integer
+      nickname:
+        type: string
+      post_id:
+        type: integer
+      rate:
+        $ref: '#/definitions/api.Rate'
+      user_id:
+        type: integer
+    type: object
+  api.CommentCreateRequest:
+    properties:
+      content:
+        example: Test comment
+        type: string
+    type: object
+  api.CommentResponse:
+    properties:
+      comment:
+        $ref: '#/definitions/api.Comment'
+    type: object
+  api.CreateChatMessage:
+    properties:
+      user1_id:
+        type: integer
+      user2_id:
+        type: integer
+    type: object
+  api.ErrorDetails:
+    properties:
+      code:
+        type: integer
+      details:
+        items:
+          $ref: '#/definitions/api.ValidationError'
+        type: array
+      message:
+        type: string
+    type: object
+  api.GeneralPagination:
+    properties:
+      current_page:
+        description: Поточна сторінка
+        type: integer
+      order_by:
+        description: Тип сортування або порядок
+        type: string
+      per_page:
+        description: Кількість елементів на сторінці
+        type: integer
+      total_count:
+        description: Загальна кількість елементів
+        type: integer
+      total_pages:
+        description: Загальна кількість сторінок
+        type: integer
+    type: object
+  api.GetUserResponse:
+    properties:
+      comments:
+        items:
+          $ref: '#/definitions/api.Comment'
+        type: array
+      posts:
+        items:
+          $ref: '#/definitions/api.Post'
+        type: array
+      user:
+        $ref: '#/definitions/api.User'
+    type: object
+  api.GetUsersResponse:
+    properties:
+      users:
+        items:
+          $ref: '#/definitions/api.Users'
+        type: array
+    type: object
+  api.LoginRequest:
+    properties:
+      email:
+        example: test@test.com
+        type: string
+      password:
+        example: '!QAZ2wsx'
+        type: string
+    type: object
+  api.MessageMessage:
+    properties:
+      message:
+        type: string
+      roomHash:
+        type: string
+      sender:
+        $ref: '#/definitions/api.UserResponse'
+    type: object
+  api.Metadata:
+    properties:
+      timestamp:
+        type: string
+      version:
+        type: string
+    type: object
+  api.Post:
+    properties:
+      amount_of_comments:
+        type: integer
+      categories:
+        items:
+          $ref: '#/definitions/api.Category'
+        type: array
+      content:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: integer
+      nickname:
+        type: string
+      rate:
+        $ref: '#/definitions/api.Rate'
+      title:
+        type: string
+      user_id:
+        type: integer
+    type: object
+  api.PostAndCommentsResponse:
+    properties:
+      comments:
+        items:
+          $ref: '#/definitions/api.Comment'
+        type: array
+      post:
+        $ref: '#/definitions/api.Post'
+    type: object
+  api.PostCreateRequest:
+    properties:
+      categories:
+        example: '#category1 #category2'
+        type: string
+      content:
+        example: Test content
+        type: string
+      title:
+        example: Test title
+        type: string
+    type: object
+  api.PostCreateResponse:
+    properties:
+      id:
+        type: integer
+    type: object
+  api.PostsResponse:
+    properties:
+      posts:
+        items:
+          $ref: '#/definitions/api.Post'
+        type: array
+    type: object
+  api.Rate:
+    properties:
+      rate:
+        type: integer
+      status:
+        type: string
+    type: object
+  api.RateRequest:
+    properties:
+      comment_id:
+        example: 2
+        type: integer
+      post_id:
+        example: 1
+        type: integer
+      status:
+        example: up
+        type: string
+    type: object
+  api.RateResponse:
+    properties:
+      rate:
+        $ref: '#/definitions/api.Rate'
+    type: object
+  api.RegistrationRequest:
+    properties:
+      age:
+        example: 02.02.2002
+        type: string
+      email:
+        example: test@test.com
+        type: string
+      first_name:
+        example: John
+        type: string
+      gender:
+        example: male
+        type: string
+      last_name:
+        example: Doe
+        type: string
+      nickname:
+        example: test
+        type: string
+      password:
+        example: '!QAZ2wsx'
+        type: string
+    type: object
+  api.Response:
+    properties:
+      authenticated:
+        type: boolean
+      message:
+        type: string
+      metadata:
+        $ref: '#/definitions/api.Metadata'
+      status:
+        type: string
+      user:
+        $ref: '#/definitions/api.UserResponse'
+    type: object
+  api.User:
+    properties:
+      amount_of_comments:
+        type: integer
+      amount_of_posts:
+        type: integer
+      created_at:
+        type: string
+      first_name:
+        type: string
+      id:
+        type: integer
+      last_name:
+        type: string
+      nickname:
+        type: string
+    type: object
+  api.UserResponse:
+    properties:
+      id:
+        type: integer
+      nickname:
+        type: string
+    type: object
+  api.Users:
+    properties:
+      id:
+        type: integer
+      last_activity:
+        type: string
+      nickname:
+        type: string
+    type: object
+  api.ValidationError:
+    properties:
+      field:
+        type: string
+      message:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: This is a sample server for kood-rt-forum.
+  title: kood-rt-forum API
+  version: "1.0"
+paths:
+  /auth/login:
+    post:
+      consumes:
+      - application/json
+      description: Logs in a user with the provided email and password.
+      parameters:
+      - description: Login credentials
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/api.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: User logged in successfully
+          schema:
+            $ref: '#/definitions/api.UserResponse'
+        "400":
+          description: Invalid request payload
+          schema:
+            $ref: '#/definitions/api.Response'
+        "401":
+          description: Invalid email or password
+          schema:
+            $ref: '#/definitions/api.Response'
+      summary: Log in a user
+      tags:
+      - auth
+  /auth/logout:
+    delete:
+      consumes:
+      - application/json
+      description: Logs out the currently authenticated user.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: User logged out successfully
+          schema:
+            $ref: '#/definitions/api.Response'
+        "401":
+          description: Missing session ID
+          schema:
+            $ref: '#/definitions/api.Response'
+      security:
+      - BearerAuth: []
+      summary: Log out a user
+      tags:
+      - auth
+  /auth/register:
+    post:
+      consumes:
+      - application/json
+      description: Registers a new user with the provided registration details.
+      parameters:
+      - description: Registration details
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/api.RegistrationRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: User registered successfully
+          schema:
+            $ref: '#/definitions/api.UserResponse'
+        "400":
+          description: Invalid request payload
+          schema:
+            $ref: '#/definitions/api.Response'
+        "409":
+          description: User already registered
+          schema:
+            $ref: '#/definitions/api.Response'
+      summary: Register a new user
+      tags:
+      - auth
+  /chats:
+    get:
+      consumes:
+      - application/json
+      description: Retrieves all chats that the authenticated user is a participant
+        of.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully retrieved chats
+          schema:
+            $ref: '#/definitions/api.ChatsList'
+      security:
+      - BearerAuth: []
+      summary: Get all chats for a user
+      tags:
+      - chats
+    post:
+      consumes:
+      - application/json
+      description: Creates a new chat between two specified users and returns the
+        chat hash.
+      parameters:
+      - description: Chat creation details
+        in: body
+        name: chat
+        required: true
+        schema:
+          $ref: '#/definitions/api.CreateChatMessage'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Successfully created chat
+          schema:
+            $ref: '#/definitions/api.ChatCreateResponse'
+      security:
+      - BearerAuth: []
+      summary: Create a new chat
+      tags:
+      - chats
+  /chats/{chatHash}:
+    get:
+      description: Retrieves the details of a specific chat and its messages if the
+        user has access to it.
+      parameters:
+      - description: Chat hash
+        in: path
+        name: chatHash
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully retrieved chat details
+          schema:
+            $ref: '#/definitions/api.Chat'
+      security:
+      - BearerAuth: []
+      summary: Get chat details by hash
+      tags:
+      - chats
+  /posts:
+    get:
+      description: Retrieves all posts from the database, with optional sorting and
+        pagination.
+      parameters:
+      - description: 'Sorting criteria: new, old, popular (default: new)'
+        in: query
+        name: sort
+        type: string
+      - description: 'Number of items per page (default: 20)'
+        in: query
+        name: pageSize
+        type: integer
+      - description: 'Page number (default: 1)'
+        in: query
+        name: page
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            allOf:
+            - $ref: '#/definitions/api.Response'
+            - properties:
+                ' pagination':
+                  $ref: '#/definitions/api.GeneralPagination'
+                payload:
+                  $ref: '#/definitions/api.PostsResponse'
+              type: object
+        "404":
+          description: Posts not found
+          schema:
+            allOf:
+            - $ref: '#/definitions/api.Response'
+            - properties:
+                error:
+                  $ref: '#/definitions/api.ErrorDetails'
+              type: object
+      summary: Get all posts
+      tags:
+      - posts
+    post:
+      consumes:
+      - application/json
+      description: Creates a new post with the provided data.
+      parameters:
+      - description: Post data to create
+        in: body
+        name: post
+        required: true
+        schema:
+          $ref: '#/definitions/api.PostCreateRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Post created successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/api.Response'
+            - properties:
+                payload:
+                  $ref: '#/definitions/api.PostCreateResponse'
+              type: object
+        "400":
+          description: Invalid request payload
+          schema:
+            allOf:
+            - $ref: '#/definitions/api.Response'
+            - properties:
+                error:
+                  $ref: '#/definitions/api.ErrorDetails'
+              type: object
+        "401":
+          description: 'Unauthorized: User is not authenticated'
+          schema:
+            allOf:
+            - $ref: '#/definitions/api.Response'
+            - properties:
+                error:
+                  $ref: '#/definitions/api.ErrorDetails'
+              type: object
+        "500":
+          description: 'Internal Server Error: Error creating post'
+          schema:
+            allOf:
+            - $ref: '#/definitions/api.Response'
+            - properties:
+                error:
+                  $ref: '#/definitions/api.ErrorDetails'
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Create a new post
+      tags:
+      - posts
+  /posts/{id}:
+    get:
+      description: Retrieves a specific post and its comments by ID, with optional
+        sorting and pagination for comments.
+      parameters:
+      - description: Post ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: 'Sorting criteria: new, old, popular (default: new)'
+        in: query
+        name: sort
+        type: string
+      - description: 'Number of items per page (default: 20)'
+        in: query
+        name: pageSize
+        type: integer
+      - description: 'Page number (default: 1)'
+        in: query
+        name: page
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            allOf:
+            - $ref: '#/definitions/api.Response'
+            - properties:
+                ' pagination':
+                  $ref: '#/definitions/api.GeneralPagination'
+                payload:
+                  $ref: '#/definitions/api.PostAndCommentsResponse'
+              type: object
+        "400":
+          description: Invalid post ID
+          schema:
+            allOf:
+            - $ref: '#/definitions/api.Response'
+            - properties:
+                error:
+                  $ref: '#/definitions/api.ErrorDetails'
+              type: object
+      summary: Get a specific post and its comments
+      tags:
+      - posts
+  /posts/{post_id}/comments:
+    post:
+      consumes:
+      - application/json
+      description: Creates a new comment for a specified post ID. Requires authentication.
+      parameters:
+      - description: Post ID
+        in: path
+        name: post_id
+        required: true
+        type: integer
+      - description: Comment data
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/api.CommentCreateRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Comment created successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/api.Response'
+            - properties:
+                payload:
+                  $ref: '#/definitions/api.CommentResponse'
+              type: object
+        "400":
+          description: Bad request
+          schema:
+            allOf:
+            - $ref: '#/definitions/api.Response'
+            - properties:
+                error:
+                  $ref: '#/definitions/api.ErrorDetails'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/api.Response'
+            - properties:
+                error:
+                  $ref: '#/definitions/api.ErrorDetails'
+              type: object
+        "500":
+          description: Internal server error
+          schema:
+            allOf:
+            - $ref: '#/definitions/api.Response'
+            - properties:
+                error:
+                  $ref: '#/definitions/api.ErrorDetails'
+              type: object
+      security:
+      - BearerAuth: []
+      summary: Create a new comment for a post
+      tags:
+      - posts
+  /rate:
+    put:
+      parameters:
+      - description: Rate details
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/api.RateRequest'
+      responses:
+        "200":
+          description: Rating updated successfully
+          schema:
+            allOf:
+            - $ref: '#/definitions/api.Response'
+            - properties:
+                payload:
+                  $ref: '#/definitions/api.RateResponse'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            allOf:
+            - $ref: '#/definitions/api.Response'
+            - properties:
+                error:
+                  $ref: '#/definitions/api.ErrorDetails'
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            allOf:
+            - $ref: '#/definitions/api.Response'
+            - properties:
+                error:
+                  $ref: '#/definitions/api.ErrorDetails'
+              type: object
+  /users:
+    get:
+      description: Retrieves all users with optional sorting and pagination.
+      parameters:
+      - description: 'Sorting criteria: new, old, name_ABC (default: name_ABC)'
+        in: query
+        name: sort
+        type: string
+      - description: 'Number of items per page (default: 20)'
+        in: query
+        name: pageSize
+        type: integer
+      - description: 'Page number (default: 1)'
+        in: query
+        name: page
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            allOf:
+            - $ref: '#/definitions/api.Response'
+            - properties:
+                ' pagination':
+                  $ref: '#/definitions/api.GeneralPagination'
+                payload:
+                  $ref: '#/definitions/api.GetUsersResponse'
+              type: object
+      summary: Get all users
+      tags:
+      - users
+  /users/{nickname}/{type}:
+    get:
+      description: Retrieves posts or comments by user nickname with optional sorting
+        and pagination.
+      parameters:
+      - description: User Nickname (e.g., admin)
+        in: path
+        name: nickname
+        required: true
+        type: string
+      - description: 'Type of data to retrieve: posts or comments'
+        in: path
+        name: type
+        required: true
+        type: string
+      - description: 'Sorting criteria: new, old, popular (default: new)'
+        in: query
+        name: sort
+        type: string
+      - description: 'Number of items per page (default: 20)'
+        in: query
+        name: pageSize
+        type: integer
+      - description: 'Page number (default: 1)'
+        in: query
+        name: page
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successful operation
+          schema:
+            allOf:
+            - $ref: '#/definitions/api.Response'
+            - properties:
+                ' pagination':
+                  $ref: '#/definitions/api.GeneralPagination'
+                payload:
+                  $ref: '#/definitions/api.GetUserResponse'
+              type: object
+        "404":
+          description: User not found
+          schema:
+            allOf:
+            - $ref: '#/definitions/api.Response'
+            - properties:
+                error:
+                  $ref: '#/definitions/api.ErrorDetails'
+              type: object
+      summary: Get posts or comments by user nickname
+      tags:
+      - users
+swagger: "2.0"
