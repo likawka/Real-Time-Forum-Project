@@ -73,8 +73,6 @@ Welcome to the Forum Project! This README provides an overview of the project's 
   ```
 * Open your web browser and navigate to `http://localhost:8080`
 
-
-
 ## Users
 
 Login: TestUser1@gmail.com
@@ -92,10 +90,4 @@ Password: !QAZ@WSX3edc
 
 ## Created by
 
-lya
-
-ovosman
-
-ihark
-
-izinko
+izinko, lya
